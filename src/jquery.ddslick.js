@@ -399,6 +399,16 @@
         if (callbackOnSelection && typeof settings.onSelected == "function") {
             settings.onSelected.call(this, pluginData);
         }
+
+        // Don't set focus the first time this is executed on page load.
+        if (!obj.hasClass("ddslick-pageload-processed")) {
+            obj.addClass("ddslick-pageload-processed");
+        }
+        // If this selectIndex was executed manually by end user reset focus
+        // back to the dropdown.
+        else {
+            obj.find(".dd-selected").first().focus();
+        }
     }
 
     //Private: Close the drop down options
